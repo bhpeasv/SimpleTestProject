@@ -8,7 +8,7 @@ namespace UnitTestProject
     public class UnitTest1
     {
         [TestMethod]
-        public void CreateBankAccount_ValidAccNumber_Test()
+        public void CreateBankAccount_ValidAccNumber()
         {
             int accNumber = 1;
 
@@ -21,7 +21,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void CreateBankAccount_InvalidAccNumber_Expect_ArgumentException_Test()
+        public void CreateBankAccount_InvalidAccNumber_Expect_ArgumentException()
         {
             int accNumber = 0;
             BankAccount acc = null;
@@ -35,7 +35,24 @@ namespace UnitTestProject
             {
                 Assert.IsNull(acc);
             }
+        }
 
+        [TestMethod]
+        public void CreateBankAccount_ValidInitialBalance()
+        {
+            double initialBalance = 1234.56;
+            BankAccount acc = new BankAccount(1, initialBalance);
+            Assert.AreEqual(initialBalance, acc.Balance);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CreateBankAccount_InvalidInitialBalance_ExceptArgumentException()
+        {
+            double initialBalance = -0.01;
+            BankAccount acc = null;
+            acc = new BankAccount(1, initialBalance);
+            Assert.IsNull(acc);
         }
     }
 }
