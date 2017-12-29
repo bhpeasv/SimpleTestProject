@@ -1,33 +1,33 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using SimpleTestProject;
 using System;
 
-namespace UnitTestProject
+namespace NUnitTestProject
 {
-    [TestClass]
-    public class UnitTest1
+    [TestFixture]
+    public class BankAccountTest
     {
-        [TestMethod]
+        [Test]
         public void CreateBankAccount_ValidAccNumber()
         {
             int accNumber = 1;
 
             BankAccount acc = new BankAccount(accNumber);
-            
+
             Assert.IsNotNull(acc);
             Assert.AreEqual(accNumber, acc.AccNumber);
             Assert.AreEqual(0.0, acc.Balance);
-            Assert.AreEqual(BankAccount.DEFAULT_INTEREST_RATE, acc.InterestRate);         
+            Assert.AreEqual(BankAccount.DEFAULT_INTEREST_RATE, acc.InterestRate);
         }
 
-        [TestMethod]
+        [Test]
         public void CreateBankAccount_InvalidAccNumber_Expect_ArgumentException()
         {
             int accNumber = 0;
             BankAccount acc = null;
             try
-            { 
-            
+            {
+
                 acc = new BankAccount(accNumber);
                 Assert.Fail();
             }
@@ -37,7 +37,7 @@ namespace UnitTestProject
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CreateBankAccount_ValidInitialBalance()
         {
             double initialBalance = 1234.56;
@@ -45,13 +45,13 @@ namespace UnitTestProject
             Assert.AreEqual(initialBalance, acc.Balance);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
         public void CreateBankAccount_InvalidInitialBalance_ExceptArgumentException()
         {
             double initialBalance = -0.01;
             BankAccount acc = null;
-            acc = new BankAccount(1, initialBalance);
+            var ex = Assert.Throws<ArgumentException>(() =>  acc = new BankAccount(1, initialBalance));
+            Assert.That(ex.Message == "Initial balance must be above zero");
             Assert.IsNull(acc);
         }
     }

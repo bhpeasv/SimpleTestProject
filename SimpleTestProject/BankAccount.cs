@@ -24,7 +24,7 @@ namespace SimpleTestProject
         public BankAccount(int id, double initialBalance) : this(id)
         {
             if (initialBalance < 0)
-                throw new ArgumentException("Initial balance must be positive");
+                throw new ArgumentException("Initial balance must be above zero");
             this.Balance = initialBalance;
         }
     }
