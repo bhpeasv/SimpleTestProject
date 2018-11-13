@@ -4,7 +4,7 @@ using System;
 using Xunit;
 
 namespace XUnitTestProject
-{   
+{
     public class BankAccountTest
     {
         [Fact]
@@ -50,7 +50,7 @@ namespace XUnitTestProject
         {
             double initialBalance = -0.01;
             BankAccount acc = null;
-            var ex = Assert.Throws<ArgumentException>(() =>  acc = new BankAccount(1, initialBalance));
+            var ex = Assert.Throws<ArgumentException>(() => acc = new BankAccount(1, initialBalance));
             Assert.True(ex.Message == "Initial balance must be above zero");
             Assert.Null(acc);
         }
@@ -73,7 +73,41 @@ namespace XUnitTestProject
             double initialBalance = 123.45;
             BankAccount acc = new BankAccount(1, initialBalance);
             var ex = Assert.Throws<ArgumentException>(() => acc.Deposit(amount));
-            Assert.Equal("Amount to deposit must be greater than zero" ,ex.Message);
+            Assert.Equal("Amount to deposit must be greater than zero", ex.Message);
+        }
+
+        [Theory]
+        [InlineData(123.45, 0.01)]
+        [InlineData(123.45, 123.45)]
+        public void WithdrawValidAmount(double initialBalance, double amount)
+        {
+            BankAccount acc = new BankAccount(1, initialBalance);
+            acc.Withdraw(amount);
+            Assert.Equal(initialBalance - amount, acc.Balance);
+        }
+
+        [Fact]
+        public void WithdrawNonPositiveAmountExpectArgumentException()
+        {
+            double initialBalance = 123.45;
+            double amount = -0.01;
+            BankAccount acc = new BankAccount(1, initialBalance);
+
+            var ex = Assert.Throws<ArgumentException>(() => acc.Withdraw(amount));
+            Assert.Equal("Amount to withdraw must be greater than zero", ex.Message);
+            Assert.Equal(initialBalance, acc.Balance);
+        }
+
+        [Fact]
+        public void WithdrawAmountExceedingTheBalanceExpectArgumentException()
+        {
+            double initialBalance = 123.45;
+            double amount = initialBalance + 0.01;
+            BankAccount acc = new BankAccount(1, initialBalance);
+
+            var ex = Assert.Throws<ArgumentException>(() => acc.Withdraw(amount));
+            Assert.Equal("Amount to withdraw exceeds the current balance", ex.Message);
+            Assert.Equal(initialBalance, acc.Balance);
         }
     }
 }
