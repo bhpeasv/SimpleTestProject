@@ -34,6 +34,15 @@ namespace SimpleTestProject
                 throw new ArgumentException("Amount to deposit must be greater than zero");
             Balance += amount;
         }
+
+        public void Withdraw(double amount)
+        {
+            if (amount <= 0.00)
+                throw new ArgumentException("Amount to withdraw must be greater than zero");
+           if (amount > Balance)
+                throw new ArgumentException("Amount to withdraw exceeds the current balance");
+            Balance -= amount;
+        }
     }
 
 }
