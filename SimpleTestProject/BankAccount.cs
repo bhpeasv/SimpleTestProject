@@ -27,6 +27,13 @@ namespace SimpleTestProject
                 throw new ArgumentException("Initial balance must be above zero");
             this.Balance = initialBalance;
         }
+
+        public void Deposit(double amount)
+        {
+            if (amount <= 0.00)
+                throw new ArgumentException("Amount to deposit must be greater than zero");
+            Balance += amount;
+        }
     }
 
 }

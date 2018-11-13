@@ -54,5 +54,26 @@ namespace XUnitTestProject
             Assert.True(ex.Message == "Initial balance must be above zero");
             Assert.Null(acc);
         }
+
+        [Fact]
+        public void DepositValidAmount()
+        {
+            double initialBalance = 123.45;
+            BankAccount acc = new BankAccount(1, initialBalance);
+            double amount = 0.01;
+            acc.Deposit(amount);
+            Assert.Equal(initialBalance + amount, acc.Balance);
+        }
+
+        [Theory]
+        [InlineData(0.00)]
+        [InlineData(-0.01)]
+        public void DepositInvalidAmountExpectArgumentException(double amount)
+        {
+            double initialBalance = 123.45;
+            BankAccount acc = new BankAccount(1, initialBalance);
+            var ex = Assert.Throws<ArgumentException>(() => acc.Deposit(amount));
+            Assert.Equal("Amount to deposit must be greater than zero" ,ex.Message);
+        }
     }
 }
