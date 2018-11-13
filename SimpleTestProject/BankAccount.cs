@@ -43,6 +43,11 @@ namespace SimpleTestProject
                 throw new ArgumentException("Amount to withdraw exceeds the current balance");
             Balance -= amount;
         }
+
+        public void AddInterest()
+        {
+            Balance += Balance * InterestRate;
+        }
     }
 
 }

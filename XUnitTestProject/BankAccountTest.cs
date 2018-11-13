@@ -109,5 +109,19 @@ namespace XUnitTestProject
             Assert.Equal("Amount to withdraw exceeds the current balance", ex.Message);
             Assert.Equal(initialBalance, acc.Balance);
         }
+
+        [Fact]
+        public void AddInterest()
+        {
+            double initialBalance = 123.45;
+            BankAccount acc = new BankAccount(1, initialBalance);
+            double oldBalance = acc.Balance;
+            double expectedBalance = oldBalance * (1 + acc.InterestRate);
+            
+            acc.AddInterest();
+
+            Assert.Equal(expectedBalance, acc.Balance);
+
+        }
     }
 }
