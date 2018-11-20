@@ -12,7 +12,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestProject", "UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitTestProject", "NUnitTestProject\NUnitTestProject.csproj", "{5E507B49-94AB-4F22-B516-93C00830DEBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{FDC9DD16-874D-4C3A-B482-76CB2D9B8DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject", "XUnitTestProject\XUnitTestProject.csproj", "{FDC9DD16-874D-4C3A-B482-76CB2D9B8DB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBACE3C8-CDCD-4DFE-B2AB-C54CC05366DD}"
+	ProjectSection(SolutionItems) = preProject
+		travis.yml = travis.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
