@@ -7,5 +7,5 @@ install:
 
 script:
  - dotnet build
- - dotnet test XUnitTestProject.csproj
- - dotnet test NUnitTestProject.csproj
+ - dotnet test SimpleTestProject/XUnitTestProject.csproj
+ - dotnet test SimpleTestProject/NUnitTestProject.csproj
