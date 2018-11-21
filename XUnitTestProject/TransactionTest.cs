@@ -1,7 +1,7 @@
 ﻿using SimpleTestProject;
 using Xunit;
 
-namespace XUnitTestProject
+namespace MSTestProject
 {
     public class TransactionTest
     {

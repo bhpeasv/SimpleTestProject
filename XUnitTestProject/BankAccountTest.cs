@@ -3,7 +3,7 @@ using SimpleTestProject;
 using System;
 using Xunit;
 
-namespace XUnitTestProject
+namespace MSTestProject
 {
     public class BankAccountTest
     {

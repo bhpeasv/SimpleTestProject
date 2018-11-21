@@ -1,13 +1,13 @@
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleTestProject;
 using System;
 
 namespace MSTestProject
 {
- 
+    [TestClass]
     public class BankAccountTest
     {
-        [Test]
+        [TestMethod]
         public void CreateBankAccount_ValidAccNumber()
         {
             int accNumber = 1;
@@ -20,7 +20,7 @@ namespace MSTestProject
             Assert.AreEqual(BankAccount.DEFAULT_INTEREST_RATE, acc.InterestRate);
         }
 
-        [Test]
+        [TestMethod]
         public void CreateBankAccount_InvalidAccNumber_Expect_ArgumentException()
         {
             int accNumber = 0;
@@ -37,7 +37,7 @@ namespace MSTestProject
             }
         }
 
-        [Test]
+        [TestMethod]
         public void CreateBankAccount_ValidInitialBalance()
         {
             double initialBalance = 1234.56;
@@ -45,13 +45,13 @@ namespace MSTestProject
             Assert.AreEqual(initialBalance, acc.Balance);
         }
 
-        [Test]
+        [TestMethod]
         public void CreateBankAccount_InvalidInitialBalance_ExceptArgumentException()
         {
             double initialBalance = -0.01;
             BankAccount acc = null;
-            var ex = Assert.Throws<ArgumentException>(() =>  acc = new BankAccount(1, initialBalance));
-            Assert.That(ex.Message == "Initial balance must be above zero");
+            var ex = Assert.ThrowsException<ArgumentException>(() =>  acc = new BankAccount(1, initialBalance));
+            Assert.IsTrue(ex.Message == "Initial balance must be above zero");
             Assert.IsNull(acc);
         }
     }
