@@ -9,4 +9,3 @@ script:
  - dotnet build
  - dotnet test XUnitTestProject/XUnitTestProject.csproj
  - dotnet test NUnitTestProject/NUnitTestProject.csproj
- - grep "Test Results" build.log
