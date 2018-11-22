@@ -37,8 +37,8 @@ namespace SimpleTestProject
 
         public void Withdraw(double amount)
         {
-            //if (amount <= 0.00)
-            //    throw new ArgumentException("Amount to withdraw must be greater than zero");
+            if (amount <= 0.00)
+                throw new ArgumentException("Amount to withdraw must be greater than zero");
            if (amount > Balance)
                 throw new ArgumentException("Amount to withdraw exceeds the current balance");
             Balance -= amount;
